@@ -1,0 +1,20 @@
+# Authors
+
+billy_rick:
+  name: Billy Rick
+  web: http://thewhip.com
+  email: vnthf1@naver.com, minho-choi@nhnent.com
+  bio: "1년차 초보개발자 입니다."
+  avatar: bio-photo-2.jpg
+  twitter: extravagantman
+  google:
+    plus: BillyRick
+
+cornelius_fiddlebone:
+  name: Cornelius Fiddlebone
+  email: cornelius@thewhip.com
+  bio: "I ordered what?"
+  avatar: bio-photo.jpg
+  twitter: rhymeswithsackit
+  google:
+    plus: CorneliusFiddlebone

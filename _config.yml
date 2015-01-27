@@ -1,37 +1,59 @@
-# Site settings
-title: 호우의 블로그 
-email: minho-choi@nhnent.com
-description: > # this means to ignore newlines until "baseurl:"
- 초보 개발자의 좌충우돌 블로그입니다.
-baseurl: "/blog"
-url: "http://Vnthf.github.io/blog" # the base hostname & protocol for your site
-github_username:  Vnthf
+# Site wide configuration
 
-# Build settings
-markdown: kramdown
+title:            호우의 블로그
+locale:           en_US
+url:              
 
-# Prose
-prose:
-  media: 'assets/media'
-  metadata:
-    _posts:
-      - name: "layout"
-        field:
-          element: "hidden"
-          value: "post"
-      - name: "published"
-        field:
-          element: "hidden"
-          value: "true"
-      - name: "title"
-        field:
-          label: "Title"
-          element: "text"
-      - name: "date"
-        field:
-          label: "Date"
-          element: "text"
-      - name: "category"
-        field:
-          label: "Category"
-          element: "text"
+
+# Jekyll configuration
+
+permalink:   /:categories/:title/
+markdown:    kramdown
+highlighter: pygments
+sass:
+  sass_dir: _sass
+  style: compressed
+gems:
+  - jekyll-sitemap
+
+kramdown:
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  use_coderay: false
+
+
+# Site owner
+owner:
+  name: Hou
+  avatar: bio-photo.jpg
+  bio: "웹/자바 개발자"
+  email: 
+  disqus-shortname: Vnthf
+  twitter: #username
+  facebook: #username
+  google:
+    plus: #username
+    analytics: 
+    verify: 
+    ad-client: 
+    ad-slot: 
+  bing-verify: 
+  github: #username
+  stackoverflow: #http://stackoverflow.com/users/123456/username
+  linkedin: #username
+  instagram: #username
+  lastfm: #username
+  tumblr: #username
+  pinterest: #username
+  foursquare: #username
+  steam: #username
+  dribbble: #username
+  youtube: #username
+  soundcloud: #username
+  weibo: #username
+  flickr: #username
+
+include: [".htaccess"]
+exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "Gemfile", "Gemfile.lock", "LICENSE", "README.md"]
