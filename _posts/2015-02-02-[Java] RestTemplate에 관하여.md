@@ -7,14 +7,14 @@ excerpt: "A post to test author overrides using a data file."
 tags: [java]
 ---
 
-h1. URLConnection
+## URLConnection
 
 * 기본 JDK에 포함
 * HTTP뿐만 아니라 여러 프로토콜 제공
 * 다른 라이브러리와 달리 직관적으로 HTTP Method에는 대응되지 않음
 
 
-h1. httpClient
+## httpClient
 
 * org.apache.http.client에서 제공하는 라이브러리
 * URLConnection과 같은 기능을 손쉽게(그 당시에) 구현 할 수 있고 timeout설정 또한 가능하다.
@@ -29,7 +29,7 @@ http://www.innovation.ch/java/HTTPClient/urlcon_vs_httpclient.html
 * Httpclient 3.x 버전에서 개선되어 넘어오면서 HttpComponent 4.x 로 바뀌었다. 둘간의 직접적인 호환성은 제공해주지 않는다.
 * 4.x 부터는 Thread에 안정적인 기능들을 많이 제공한다.
 
-{code:xml}
+{% highlight xml %}
 /** Apache HttpClient 3.x **/
 <dependency>
     <groupId>commons-httpclient</groupId>
@@ -49,12 +49,13 @@ http://www.innovation.ch/java/HTTPClient/urlcon_vs_httpclient.html
     <artifactId>httpasyncclient</artifactId>
     <version>4.0-beta3</version>
 </dependency>   
+{% endhighlight %}
 
-{code}
 
 * 사용 예제 코드
 
-{code}
+
+{% highlight java %}
 /** HttpClient 3.x **/
 HttpClient httpclient = new HttpClient();
   GetMethod httpget = new GetMethod("http://www.myhost.com/");
@@ -67,9 +68,9 @@ HttpClient httpclient = new HttpClient();
     httpget.releaseConnection();
   }
 출처 : http://hc.apache.org/httpclient-3.x/performance.html
-{code} 
+{% endhighlight %}
 
-{code}
+{% highlight java %}
 /** HttpComponent 4.x **/
  CloseableHttpClient httpclient = HttpClients.createDefault();
         try {
@@ -99,29 +100,29 @@ HttpClient httpclient = new HttpClient();
             httpclient.close();
         }
 출처 : https://hc.apache.org/httpcomponents-client-ga/httpclient/examples/org/apache/http/examples/client/ClientWithResponseHandler.java
-{code}
+{% endhighlight %}
 
-h1. restTemplate
+## restTemplate
 
 * spring 3 부터 지원
 
 * jdbcTemplate과 같이 스프링의 여느 template이 그렇듯 boilerplate code(진부하게 반복되는 코드들)를 최대한 줄여준다. 그래서 사용하기 편하다.
 
-{code}
+{% highlight java %}
 String result = restTemplate.getForObject("http://example.com/hotels/{hotel}/bookings/{booking}", String.class, "42", "21");
 출처 : http://spring.io/blog/2009/03/27/rest-in-spring-3-resttemplate
-{code}
+{% endhighlight %}
 위와 같이 코드 한줄이면 결과값을 받아 올 수 있다.
 
 * restful 형식에 맞춘 URL을 지원해준다.
 
-{code}
+{% highlight java %}
 Map<String, String> vars = new HashMap<String, String>();
 vars.put("hotel", "42");
 vars.put("booking", "21");
 String result = restTemplate.getForObject("http://example.com/hotels/{hotel}/bookings/{booking}", String.class, vars);
 출처 : http://spring.io/blog/2009/03/27/rest-in-spring-3-resttemplate
-{code}
+{% endhighlight %}
 rest앞의 예제 처럼 string 뿐만 아니라 key-value처럼 Map을 넘겨 줄 수도있다.
 
 * HttpRequest는 java.net.HttpURLConenction에서 제공해주는 SimpleClientHttpRequest를 쓰고 있다.
@@ -133,11 +134,11 @@ rest앞의 예제 처럼 string 뿐만 아니라 key-value처럼 Map을 넘겨 �
 ** 이렇게 하면 따로 inputstream을 받아서 파싱해줄 필요가 없이 더 편하게 매핑해줄 수 있다.
 ** text, application/json, xml, recourse등 다양한 converter들이 있다 자세한것은 하단의 링크 참조
 
-{code}
+{% highlight java %}
 RestTemplate restTemplate = new RestTemplate();
 restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 Title[] titles = restTemplate.getForObject(url, Title[].class);
-{code}
+{% endhighlight %}
 
 
 
@@ -155,7 +156,7 @@ Title[] titles = restTemplate.getForObject(url, Title[].class);
 
 
 
-h1. 속도 테스트 
+## 속도 테스트 
 * apache httpclient와 restTemplate의 get과 post Method를 구현한 테스트코드이다.
 * 각각 1000번씩 3번을 반복하여 속도를 비교하였다.
 * 정말 단순한 http콜만 하는 코드이다.
@@ -172,7 +173,7 @@ h1. 속도 테스트
 
 * 테스트코드
 
-{code}
+{% highlight java %}
 public void usePostHttpClient() {
 
     BufferedReader br = null;
@@ -241,11 +242,10 @@ public void usePostHttpClient() {
 
   }
 
-{code}
+{% endhighlight %}
 
 
-
-h1. 결론
+## 결론
 * spring restTemplate의 장점은 무엇보다도 사용자입장에서 코드의 양이 적고 그만큼 쓰기 간편하다는 것이다.
 * 사실 성능상의 큰 차이가 없더라도 web 프로젝트라면 DI방식으로 간편하고 확장이 편한 restTemplate을 사용하는것이 좋아 보인다.
  사용자는 비지니스모델에만 집중할 수 있기 때문이다. 또한 통신하는 부분과 해석하는 부분을 따로 구분해서 처리할 수 있다.
@@ -254,7 +254,7 @@ h1. 결론
 * resource 관리에 유리하다.
 
 
-h1. Reference
+## Reference
 * restTemplate javaDoc : http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html
 * restTemplate 설명 : http://spring.io/blog/2009/03/27/rest-in-spring-3-resttemplate
 * restTemplate 예제 : http://docs.spring.io/spring/docs/3.0.x/spring-framework-reference/html/remoting.html#rest-client-access
