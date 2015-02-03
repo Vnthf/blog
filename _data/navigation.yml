@@ -1,6 +1,6 @@
 # Site navigation links
 
-- title: About
+- title: Me
   url: /about/
 
 - title: 개발
@@ -8,9 +8,6 @@
 
 - title: 일상
   url: /daily/
-
-- title: Theme Setup
-  url: /theme-setup/
 
 - title: GitHub
   url: http://GitHub.com/Vnthf

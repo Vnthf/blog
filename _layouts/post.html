@@ -35,7 +35,7 @@
   <article class="post">
     <div class="headline-wrap">
       {% if page.link %}
-        <h1><a href="{{ page.link }}">{{ page.title }}끼꺄꺄</a></h1>
+        <h1><a href="{{ page.link }}">{{ page.title }}</a></h1>
       {% else %}
         <h1><a href="{{ site.url }}{{ page.url }}" rel="bookmark" title="{{ page.title }}">{{ page.title }}</a></h1>
       {% endif %}
@@ -48,9 +48,6 @@
         <p class="byline"><strong>{{ page.title }}</strong> was published on <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>{% if page.modified %} and last modified on <time datetime="{{ page.modified | date: "%Y-%m-%d" }}">{{ page.modified | date: "%B %d, %Y" }}</time>{% endif %}.</p>
       </footer>
     </div><!-- /.article-wrap -->
-   {{  site.owner.disqus-shortname }}
-    site.owner.disqus-shortname
-  
     <section id="disqus_thread">
      {% include _disqus_comments.html %}
     </section><!-- /#disqus_thread -->

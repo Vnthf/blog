@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Spring RestTemplate"
-author: minho-choi
-modified:
-excerpt: "A post to test author overrides using a data file."
+title: "[java] Spring RestTemplate"
+modified: 2015-02-02
+comments: true
+excerpt: "apache의 httpclient와 spring의 restTemplate비교"
 tags: [java]
 ---
 

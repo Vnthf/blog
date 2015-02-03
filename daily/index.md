@@ -1,5 +1,5 @@
 ---
-layout: post-index
+layout: daily-index
 title: All Posts
-excerpt: "A List of Posts"
+excerpt: "일상"
 ---
