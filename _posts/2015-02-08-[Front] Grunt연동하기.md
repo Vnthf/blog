@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "[Front] Grunt연동하기"
-modified: 2015-02-02
+modified: 2015-02-08
 comments: true
 excerpt: "spring에서 grunt usemin 연동하기"
 tags: [javaScript,css,html]
@@ -142,7 +142,7 @@ Gruntfile.js와 package.json만 WEB_INF폴더 밑에 둡니다.
 <br /><br />
 먼저 pom.xml에 배포환경별 빌드를 설정해주고 아래와 같이 작성합니다.
 {% highlight xml%}
-작성작성내일작성
+작성작성내일작
 {% endhighlight %}
 
 
