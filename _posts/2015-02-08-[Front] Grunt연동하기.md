@@ -141,12 +141,70 @@ Gruntfile.js와 package.json만 WEB_INF폴더 밑에 둡니다.
 (단 서버에 npm과 grunt-cli는 깔아 놔주세요.)
 <br /><br />
 먼저 pom.xml에 배포환경별 빌드를 설정해주고 아래와 같이 작성합니다.
+
 {% highlight xml%}
-작성작성내일작
+<!-- dev -->
+    <profile>
+      <id>dev</id>
+      <properties>
+        <env>dev</env>
+      </properties>
+
+    </profile>
+
+    <!-- alpha -->
+    <profile>
+      <id>alpha</id>
+      <properties>
+        <env>alpha</env>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>1.2.1</version>
+            <executions>
+              <execution>
+                <id>exec-npm-install</id>
+                <phase>generate-sources</phase>
+                <configuration>
+                  <executable>npm</executable>
+                  <arguments>
+                    <argument>install</argument>
+                  </arguments>
+                  <workingDirectory>${project.basedir}/src/main/webapp/WEB-INF
+                  </workingDirectory>
+                </configuration>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>exec-grunt-usemin</id>
+                <phase>prepare-package</phase>
+                <configuration>
+                  <executable>grunt</executable>
+                  <arguments>
+                    <argument>build</argument>
+                  </arguments>
+                  <workingDirectory>${project.basedir}/src/main/webapp/WEB-INF
+                  </workingDirectory>
+                </configuration>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
 {% endhighlight %}
 
 
-alph 환경과 real환경에서 grunt가 동작하도록 해놓았습니다.
+
+dev 환경에서는 동작하지 않고 alpha 환경과 grunt가 동작하도록 해놓았습니다.
 exec-maven-plugin을 이용해 package.json과 Gruntfile.js가 있는 폴더로 가서 npm install을 실행시켜서 grunt 모듈을 설치합니다. 
 다음 Gruntfile.js에서 설정한 명령어인 grunt build를 실행시킵니다.
 그러면 개발시에는 해당 스크립트를 그대로 쓰고 배포때만 js와 css가 바뀐 모습을 볼 수 있을 것입니다. 
