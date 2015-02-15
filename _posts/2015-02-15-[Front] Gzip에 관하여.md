@@ -6,7 +6,6 @@ comments: true
 excerpt: "웹서비스 성능향상을 시켜주는 Gzip의 사용법과 설명"
 tags: [javaScript,css,html,apache,nginx,gzip]
 ---
-# Gzip에 대하여 
 프론트 성능개선을 위해 많이 쓰이는 것중 하나가 바로 Gzip입니다. 서버에서 html, javascript, css, image등을 압축해줘서 리소스를 받는 로딩시간을 줄여주어서 성능을 개선시켜 줍니다. 예전 프로젝트에서 minify나 concat, cache을 더하여 적용하였더니 이전보다 약 85%의 성능향상이 있었습니다. 웹개발을 하게 되면 필수적인 옵션이라고 할 수 있습니다. 그럼 이 Gzip은 어떻게 동작하며 알아야 할것이 무엇인지 포스팅해보도록 하겠습니다. <br/>
 먼저 Gzip이란 위키피디아에서 다음과 같이 정의하고 있습니다.
 
