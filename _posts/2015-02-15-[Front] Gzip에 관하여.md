@@ -15,9 +15,13 @@ gzip은 파일 압축에 쓰이는 응용 소프트웨어이다. gzip은 GNU zip
 
 ### 동작원리
 현재 대부분의 모든 브라우저는 바로 이 Gzip압축을 지원하고 있는데요. 브라우저가 Gzip압축을 지원을 하게 되면 브라우저는 서버에게 Accept-Encoding이라는 헤더를 통해서 '나 Gzip지원한다'라고 알려주게 됩니다.
+{% highlight xml %}
 Accept-Encoding:gzip
+{% endhighlight %}
 그러면 웹서버는 이 요청을 받고 Gzip을 지원해주려면 응답해더에 Content-Encoding이라는 '이건 Gzip을 지원해'라는 해더를 넣어서 보내주게 됩니다.
+{% highlight xml %}
 Content-Encoding:gzip 
+{% endhighlight %}
 
 ### Gzip 설정 방법 
 
