@@ -41,7 +41,7 @@
         {% capture year %}{{ post.date | date: '%m/%d/%Y' }}{% endcapture %}
         {% capture nyear %}{{ post.next.date | date: '%m/%d/%Y' }}{% endcapture %}
         {% if year != nyear %}
-          <h6>{{ post.date | date: '%m/%d/%Y' }}</h6>
+          <h5>{{ post.date | date: '%m/%d/%Y' }}</h5>
         {% endif %}
       {% endunless %}
       <article>

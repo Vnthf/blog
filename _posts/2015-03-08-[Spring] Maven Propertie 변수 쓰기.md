@@ -8,40 +8,41 @@ tags: [html,img,ie8,empty src]
 ---
 
 Maven-Spring 환경에서 아래와 같은 pom.xml의 project 변수들은 pom파일 내에서는 아래와 같이 사용 할 수 있습니다. 
+
 {% highlight xml %}
 ${java.version}
 {% endhighlight %}
 그러나 pom파일 뿐만 아니라 java나 프로퍼티 파일에서 써야 할 경우가 생깁니다. 특히 build timestamp같은 경우는 많은곳에서 사용합니다. 
 {% highlight xml %}
 <properties>
-		<!-- Generic properties -->
-		<jdk-version>1.8</jdk-version>
-		<deploy.path>deploy</deploy.path>
-		<maven.test.skip>false</maven.test.skip>
-		<deploy-path>deploy</deploy-path>
+	<!-- Generic properties -->
+	<jdk-version>1.8</jdk-version>
+	<deploy.path>deploy</deploy.path>
+	<maven.test.skip>false</maven.test.skip>
+	<deploy-path>deploy</deploy-path>
 
-		<!-- Web -->
-		<jsp.version>2.1</jsp.version>
-		<jstl.version>1.2</jstl.version>
-		<servlet.version>3.1.0</servlet.version>
+	<!-- Web -->
+	<jsp.version>2.1</jsp.version>
+	<jstl.version>1.2</jstl.version>
+	<servlet.version>3.1.0</servlet.version>
 
-		<!-- Spring -->
-		<spring-framework.version>4.1.0.RELEASE</spring-framework.version>
+	<!-- Spring -->
+	<spring-framework.version>4.1.0.RELEASE</spring-framework.version>
 
-		<!-- nClavis -->
-		<nclavis.version>2.2.0</nclavis.version>
+	<!-- nClavis -->
+	<nclavis.version>2.2.0</nclavis.version>
 
-		<!-- Logging -->
-		<logback.version>1.1.2</logback.version>
-		<slf4j.version>1.7.5</slf4j.version>
+	<!-- Logging -->
+	<logback.version>1.1.2</logback.version>
+	<slf4j.version>1.7.5</slf4j.version>
 
-		<!-- Test -->
-		<junit.version>4.11</junit.version>
-		<mockito.version>1.9.5</mockito.version>
+	<!-- Test -->
+	<junit.version>4.11</junit.version>
+	<mockito.version>1.9.5</mockito.version>
 
-		<timestamp>${maven.build.timestamp}</timestamp>
-		<maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
-	</properties>
+	<timestamp>${maven.build.timestamp}</timestamp>
+	<maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
+</properties>
 {% endhighlight %}
 
 
@@ -66,7 +67,7 @@ build.date=${timestamp}
 ## webapp 디렉토리 내부에서 쓰기 
 html파일이나 javascript 파일에서 maven 변수값을 받으려면 maven-war-plugin을 써야합니다. maven에서는 resource는 webapp 안에서는 접근 할 수 없기 때문에 war 패키징을 할 때 프로퍼티를 할당해 줍니다. 아래와 같이 maven 프로퍼티값을 쓰고자 할 파일들을 필터에 넣어주면 됩니다. 단 버전 2.2이하로는 encoding 버그가 있어서 한글이 깨질 수 있으니 꼭 버전을 명시해주어야 합니다. 
 
-
+{% highlight xml %}
 <plugin>
 	<groupId>org.apache.maven.plugins</groupId>
 	<artifactId>maven-war-plugin</artifactId>
@@ -94,6 +95,7 @@ html파일이나 javascript 파일에서 maven 변수값을 받으려면 maven-w
 		</webResources>
 	</configuration>
 </plugin>
+{% endhighlight %}
 
 ### 참고 
 * [maven-war-plugin](http://maven.apache.org/plugins/maven-war-plugin/examples/adding-filtering-webresources.html) 
