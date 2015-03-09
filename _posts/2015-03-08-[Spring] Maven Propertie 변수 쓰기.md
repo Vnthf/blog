@@ -47,7 +47,7 @@ ${java.version}
 
 
 ## JAVA에서 properties 쓰기 
-java 에서는 다양한 플러그인이 있지만 새로운 플러그인을 받지 않고 가장 깔끔한 방법은 resource에서 properties파일에 받아서 쓰는것입니다. pom.xml에서 build에 아래와 같은 resource를 추가하고 filter를 true로 해줍니다. 
+java 에서는 다양한 플러그인이 있지만 새로운 플러그인을 받지 않고 제가 생각하기에 가장 깔끔한 방법은 resource에서 properties파일에 받아서 쓰는것입니다. pom.xml에서 build에 아래와 같은 resource를 추가하고 filter를 true로 해줍니다. 
 {% highlight xml %}
 <resources>
    <resource>
@@ -57,12 +57,38 @@ java 에서는 다양한 플러그인이 있지만 새로운 플러그인을 받
 </resources>
 {% endhighlight %}
 
-이렇게 되면 resource내의 폴더 내 프로퍼티 파일에서 아래와 같이 변수를 쓸수가 있습니다. 
+이렇게 되면 resource내의 폴더 내 프로퍼티 파일에서 아래와 같이 변수를 쓸수가 있습니다. 그러면 프로퍼티 파일에서 xml설정등을 이용해서 자바에서 변수를 쓸수가 있습니다.
 
 {% highlight xml %}
 version=${pom.version}
 build.date=${timestamp}
 {% endhighlight %}
+
+이 외에도 플러그인에 systemProperty를 집어 넣어서 자바 코드에서접 직접 System.getProperty("timestamp"); 와 같이 호출 하는 방법이 있습니다.
+{% highlight xml %}
+<plugin>
+    <groupId>org.codehaus.mojo</groupId>
+    <artifactId>exec-maven-plugin</artifactId>
+    <version>${maven.exec.plugin.version}</version>
+    <executions>
+        <execution>
+            <goals>
+                <goal>java</goal>
+            </goals>
+        </execution>
+    </executions>
+    <configuration>
+        <mainClass>${exec.main-class}</mainClass>
+        <systemProperties>
+            <systemProperty>
+                <key>timestamp</key>
+                <value>${timestamp}</value>
+            </systemProperty>
+        </systemProperties>
+    </configuration>
+</plugin>
+{% endhighlight %}
+
 
 ## webapp 디렉토리 내부에서 쓰기 
 html파일이나 javascript 파일에서 maven 변수값을 받으려면 maven-war-plugin을 써야합니다. maven에서는 resource는 webapp 안에서는 접근 할 수 없기 때문에 war 패키징을 할 때 프로퍼티를 할당해 줍니다. 아래와 같이 maven 프로퍼티값을 쓰고자 할 파일들을 필터에 넣어주면 됩니다. 단 버전 2.2이하로는 encoding 버그가 있어서 한글이 깨질 수 있으니 꼭 버전을 명시해주어야 합니다. 
@@ -96,6 +122,14 @@ html파일이나 javascript 파일에서 maven 변수값을 받으려면 maven-w
 	</configuration>
 </plugin>
 {% endhighlight %}
+
+webapp 폴더내의 모든 resource에서 쓸것이 아니라면 쓸 파일들만 filter를 true로해 주고 나머지는 false로 설정해 놓는 것이 좋습니다. 이렇게 설정해주면 아래와 같이 파일 내부에서 변수를 사용할 수 있습니다.
+
+{% highlight html %}
+<!-- jsp파일 내부 -->
+<link rel="stylesheet" type="text/css" href="/resources/css/common.css?${timestamp}">
+{% endhighlight %}
+
 
 ### 참고 
 * [maven-war-plugin](http://maven.apache.org/plugins/maven-war-plugin/examples/adding-filtering-webresources.html) 
