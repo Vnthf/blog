@@ -1,5 +1,5 @@
 
-https://travis-ci.org/Vnthf/blog.svg
+[![Build Status](https://travis-ci.org/Vnthf/blog.svg?branch=gh-pages)](https://travis-ci.org/Vnthf/blog)
 
 # Minimal Mistakes
 
