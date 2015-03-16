@@ -7,7 +7,7 @@ excerpt: "spring에서 grunt usemin 연동하기"
 tags: [javaScript,css,html]
 ---
 ### Grunt란?
-Javascript 개발을 자동화시켜주는 툴입니다. 그냥 Front 개발을 편하게 해준다 생각하시면 됩니다.
+node 기반의 Front를 위한 빌드 툴입니다. Grunt를 위한 자세한 사항은 http://gruntjs.com/ 홈페이지와 모듈 검색을 통해서 참조하고 이 포스팅에서는 수많은 패키지중 파일 압축/병합과 관련된 usemin만 다룹니다.
 
 ### 시작하기 
 그런트를 쓰기 위해서는 node.js 패키지 매니저인 npm이 깔려 있어야 합니다. <br />
@@ -188,7 +188,7 @@ Gruntfile.js와 package.json만 WEB_INF폴더 밑에 둡니다.
                   <arguments>
                     <argument>build</argument>
                   </arguments>
-                  <workingDirectory>${project.basedir}/src/main/webapp/WEB-INF
+                  <workingDirectory>${project.basedtir}/src/main/webapp/WEB-INF
                   </workingDirectory>
                 </configuration>
                 <goals>
@@ -211,7 +211,7 @@ exec-maven-plugin을 이용해 package.json과 Gruntfile.js가 있는 폴더로 
 
 ### 마치면서
 사실 Grunt에는 모듈도 굉장히 많고 여러가지 옵션들도 많습니다. 이대로만 적용한다면 실제 프로젝트에서 쓰이기에 부족한면이 있을 것입니다.
-필요한데로 jshint등 여러가지 모듈을 같이 설치하시면 좋을 것 같습니다. 
+필요한데로 jshint, bower등 여러가지 모듈을 같이 설치하시면 좋을 것 같습니다. 
 
 ### 참고 
 * Grunt : http://gruntjs.com/
