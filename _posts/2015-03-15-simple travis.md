@@ -19,15 +19,16 @@ OBJECTIVE-C PERL PHP PYTHON R RUBY RUST SCALA VISUAL BASIC
  
 ## Travis 설정
 
+
 <figure>
-	<img src="/images/travis0.png">
+	<img src="/blog/images/travis0.png">
 </figure>
 
 위 사진은 제 블로그의 github.readme.md 파일입니다. 아래와 같이 build passing이라는 아이콘이 있는것을 보실 수 있습니다.개발자 분들이라면 수도 없이 보셨을 텐데요, 이것이 바로 travis의 빌드 결과를 보여주는 아이콘입니다.
 <br/>
 먼저 github 페이지에서 setting - webhooks & services로 들어갑니다. 
 <figure>
-	<img src="/images/travis1.PNG">
+	<img src="/blog/images/travis1.PNG">
 </figure>
  
 하단의 Add-service 에서 travis-CI를 찾고 확인을 눌러주어서 travis의 접근을 열어줍니다.
