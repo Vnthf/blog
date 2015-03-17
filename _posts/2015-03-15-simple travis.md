@@ -18,17 +18,27 @@ ANDROID C C++ CLOJURE C# D DART ERLANG F# GO GROOVY HASKELL JAVA JAVASCRIPT (WIT
 # Travis 연동하기
 
 <figure>
-	<img src="/images/travis1.png">
+	<img src="/blog/images/travis1.png">
 </figure>
 
-위 사진은 제 블로그의 github.readme.md 파일입니다. 아래와 같이 build passing이라는 아이콘이 있는것을 보실 수 있습니다. 개발자 분들이라면 수도 없이 보셨을 텐데요, 이것이 바로 travis의 빌드 결과를 보여주는 아이콘입니다.
+위 사진은 제 블로그의 github.readme.md 파일입니다. 아래와 같이 build passing이라는 아이콘이 있는것을 보실 수 있습니다.개발자 분들이라면 수도 없이 보셨을 텐데요, 이것이 바로 travis의 빌드 결과를 보여주는 아이콘입니다.
  
+
 먼저 github 페이지에서 setting - webhooks & services로 들어갑니다. 
- 
+<figure>
+	<img src="/blog/images/travis2.png">
+</figure>
  
 하단의 Add-service 에서 travis-CI를 찾고 확인을 눌러줍니다. 
- 
+<figure>
+	<img src="/blog/images/travis3.0.png">
+</figure> 
+
 추가가 되면 services밑에 Travis CI가 추가된걸 볼 수 있습니다. 
+<figure>
+	<img src="/blog/images/travis3.png">
+</figure> 
+
 다음은 https://travis-ci.org에 들어가서 github계정으로 로그인 후에 Repositories 목록에서 사용하고자 하는 프로젝트를 on 시켜 줍니다.
  
 다음은 프로젝트 내에서 CI연동을 해볼 차례입니다. Travis는 루트의 .travis.yml파일을 통해 동작합니다. 그래서 해당 파일을 만들어 주고 프로젝트에 맞게 파일을 설정하면 됩니다. 깃헙블로그 같은 경우는 루비를 통해 만들어 졌으므로 루비를 예로 작성하겠습니다. 다른 언어는 Travis 홈페이지에 나와 있습니다. 
