@@ -113,6 +113,6 @@ var Socket = {
 };
 {% endhighlight %} 
  
-웹소켓은 사실상 코멧의 모든 연결기술을 대채할 수 있을 것으로 생각합니다. 이미 node, netty등 많은 곳에서 웹소켓을 지원하고 있습니다. 다만 브라우저에 따라서 지원하지 않는 경우(보안문제 등)도 있습니다.  <br/><br/>웹소켓이 등장하기 이전부터 사용되던게 바로 Socket.io인데 이는 node.js에서 탄생한것으로 브라우저와 관계없이 웹소켓의 기능을 제공해줍니다. WebSocket, FlashSocket, AJAX Long Polling, AJAX Multi part Streaming, IFrame, JSONP Polling의 기술중 지원하는 하나를 선택하는 방식입니다. 이와 관련해서는 http://socket.io/#how-to-use를 참조하시기 바립니다.
+웹소켓은 사실상 코멧의 모든 연결기술을 대채할 수 있을 것으로 생각합니다. 이미 node, netty등 많은 곳에서 웹소켓을 지원하고 있습니다. 다만 브라우저에 따라서 지원하지 않는 경우(보안문제 등)도 있습니다.  <br/><br/>웹소켓이 등장하기 이전부터 사용되던게 바로 Socket.io인데 이는 node.js에서 탄생한것으로 브라우저와 관계없이 웹소켓의 기능을 제공해줍니다. WebSocket, FlashSocket, AJAX Long Polling, AJAX Multi part Streaming, IFrame, JSONP Polling의 기술중 지원하는 하나를 선택하는 방식입니다. 이와 관련해서는 http://socket.io/docs/를 참조하시기 바립니다.
  
 #### 이 책은 초고속 웹사이트 구축(저 : 스티브사우더스)의 내용을 정리하고 덧붙였습니다.
