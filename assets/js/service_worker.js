@@ -1,5 +1,5 @@
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js', {
+  navigator.serviceWorker.register('/blog/sw.js', {
     scope: '/blog/'
   }).then(function(registration) {
     console.log('서비스워커가 등록 성공 ', registration.scope);
