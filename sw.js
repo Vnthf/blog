@@ -91,7 +91,7 @@ self.addEventListener('install', function(event) {
     caches.open('static-v2').then(function(cache) {
       return cache.addAll([
         '/blog/',
-        '/blog/.html',
+        '/blog/index.html',
         new Request('/blog/assets/js/scripts.min.js', {mode: 'no-cors'}),
         new Request('/blog/images/nhnent.png', {mode: 'no-cors'})
       ]);
