@@ -88,7 +88,7 @@ console.log("set");
 self.addEventListener('install', function(event) {
   console.log("install");
   event.waitUntil(
-    caches.open('static-v3').then(function(cache) {
+    caches.open('static-v4').then(function(cache) {
       return cache.addAll([
         '/blog/',
         '/blog/index.html',
@@ -105,12 +105,16 @@ self.addEventListener('fetch', function(event) {
   console.log(event.request);
   console.log(caches);
   event.respondWith(
-    caches.match(event.request).then(function(response) {
-      return response || event.default();
-    }).catch(function() {
-      return caches.match('/blog/404.html');
-    })
-  );
+    new Response('This came from the service worker!')
+  // );
+  // event.respondWith(
+  //   caches.match(event.request).then(function(response) {
+  //     return response || event.default();
+  //   }).catch(function() {
+  //     console.log('exception');
+  //     return caches.match('/blog/404.html');
+  //   })
+  // );
 });
 self.addEventListener('activate', function(event) {
 
