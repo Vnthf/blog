@@ -85,9 +85,11 @@ if (!CacheStorage.prototype.match) {
 
 console.log("set");
 self.addEventListener('fetch', function(event) {
-  console.log("fetch");
+  console.log("set");
    event.respondWith(
-    caches.match(event.request)
+    caches.match(event.request).then(function(response) {
+      return response || event.default();
+    })
   );
 });
 
