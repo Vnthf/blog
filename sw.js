@@ -88,13 +88,17 @@ console.log("set");
 self.addEventListener('install', function(event) {
   console.log("install");
   event.waitUntil(
-    caches.open('static-v4').then(function(cache) {
+    caches.open('static-v5').then(function(cache) {
       return cache.addAll([
-        '/',
-        '/index.html',
-        new Request('/assets/js/scripts.min.js', {mode: 'no-cors'}),
-        new Request('/images/nhnent.png', {mode: 'no-cors'})
+        '/blog/',
+        '/blog/index.html',
+        new Request('/blog/assets/js/scripts.min.js', {mode: 'no-cors'}),
+        new Request('/blog/images/nhnent.png', {mode: 'no-cors'})
       ]);
+    }).then(function(){
+      console.log('등록완료');
+    }).catch(function(e){
+      console.log(e);
     })
   );
 });
@@ -107,7 +111,11 @@ self.addEventListener('fetch', function(event) {
 
   event.respondWith(
     caches.match(event.request).then(function(response) {
-      return response || event.default();
+      console.log('in');
+      if(response){
+         console.log(response);
+        return response;
+      }
     }).catch(function() {
       console.log('exception');
       return caches.match('/blog/404.html');
