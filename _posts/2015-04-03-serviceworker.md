@@ -122,13 +122,13 @@ chrome://serviceworker-internals/에 가시면 좀 더 다양한 조작이 가�
 	<img src="/blog/images/service0.png">
 </figure>
 
-새로고침을 해보면 같은 200이라서 큰차이는 느끼지 못할껍니다. 그래서 인터넷을 끊고 실행해 보겠습니다.
+새로고침을 해보면 모두 같은 200 status라서 큰 차이는 느끼지 못할것입니다. 그래서 인터넷을 끊고 실행해 보겠습니다.
 
 <figure>
 	<img src="/blog/images/service2.png">
 </figure>
 
-그러면 3개의 파일의 리소스가 캐싱이 되어 있는것을 볼 수 있습니다. 
+그러면 3개의 파일 리소스가 캐싱이 되어 있는것을 볼 수 있습니다. 
 <figure>
 	<img src="/blog/images/service1.png">
 </figure>
