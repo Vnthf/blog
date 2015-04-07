@@ -105,10 +105,9 @@ self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open('static-v5').then(function(cache) {
       return cache.addAll([
-        '/blog/',
-        // '/blog/index.html',
-         new Request('/blog/assets/js/scripts.min.js', {mode: 'no-cors'}),
-         new Request('/blog/images/nhnent.png', {mode: 'no-cors'})
+        '/blog/'
+         //new Request('/blog/assets/js/scripts.min.js', {mode: 'no-cors'}),
+         //new Request('/blog/images/nhnent.png', {mode: 'no-cors'})
       ]);
     }).then(function(){
       console.log('등록완료');
