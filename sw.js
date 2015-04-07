@@ -90,10 +90,10 @@ self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open('static-v4').then(function(cache) {
       return cache.addAll([
-        '/blog/',
-        '/blog/index.html',
-        new Request('/blog/assets/js/scripts.min.js', {mode: 'no-cors'}),
-        new Request('/blog/images/nhnent.png', {mode: 'no-cors'})
+        '/',
+        '/index.html',
+        new Request('/assets/js/scripts.min.js', {mode: 'no-cors'}),
+        new Request('/images/nhnent.png', {mode: 'no-cors'})
       ]);
     })
   );
