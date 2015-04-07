@@ -128,7 +128,7 @@ chrome://serviceworker-internals/에 가시면 좀 더 다양한 조작이 가�
 	<img src="/blog/images/service2.png">
 </figure>
 
-그러면 캐싱은 3개의 파일의 리소스가 캐싱이 되어 있습니다. 
+그러면 3개의 파일의 리소스가 캐싱이 되어 있는것을 볼 수 있습니다. 
 <figure>
 	<img src="/blog/images/service1.png">
 </figure>
