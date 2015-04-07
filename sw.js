@@ -103,10 +103,11 @@ self.addEventListener('fetch', function(event) {
 self.addEventListener('install', function(event) {
   console.log("install");
   event.waitUntil(
-    caches.open('static-v5').then(function(cache) {
+    caches.open('static-v6').then(function(cache) {
       return cache.addAll([
         '/blog/',
-        '/blog/assets/js/scripts.min.js'
+        '/blog/assets/js/scripts.min.js',
+        '/blog/images/nhnent.png'
          //new Request('/blog/assets/js/scripts.min.js', {mode: 'no-cors'}),
          //new Request('/blog/images/nhnent.png', {mode: 'no-cors'})
       ]);
