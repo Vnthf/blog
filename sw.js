@@ -104,20 +104,18 @@ self.addEventListener('fetch', function(event) {
   console.log("fetch");
   console.log(event.request);
   console.log(caches);
+
   event.respondWith(
-    new Response('This came from the service worker!')
-  // );
-  // event.respondWith(
-  //   caches.match(event.request).then(function(response) {
-  //     return response || event.default();
-  //   }).catch(function() {
-  //     console.log('exception');
-  //     return caches.match('/blog/404.html');
-  //   })
-  // );
+    caches.match(event.request).then(function(response) {
+      return response || event.default();
+    }).catch(function() {
+      console.log('exception');
+      return caches.match('/blog/404.html');
+    })
+  );
 });
 self.addEventListener('activate', function(event) {
-
+console.log("acive");
   var cacheWhitelist = ['pages-cache-v1', 'blog-posts-cache-v1'];
 
   event.waitUntil(
