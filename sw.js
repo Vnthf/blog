@@ -105,7 +105,7 @@ self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open('static-v5').then(function(cache) {
       return cache.addAll([
-        '/blog/',
+        // '/blog/',
         '/blog/index.html',
         new Request('/blog/assets/js/scripts.min.js', {mode: 'no-cors'}),
         new Request('/blog/images/nhnent.png', {mode: 'no-cors'})
