@@ -85,8 +85,9 @@ if (!CacheStorage.prototype.match) {
 
 console.log("set");
 self.addEventListener('fetch', function(event) {
-  event.respondWith(
-    new Response('This came from the service worker!')
+  console.log("fetch");
+   event.respondWith(
+    caches.match(event.request)
   );
 });
 
