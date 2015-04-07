@@ -107,8 +107,8 @@ self.addEventListener('install', function(event) {
       return cache.addAll([
         '/blog/',
         // '/blog/index.html',
-        // new Request('/blog/assets/js/scripts.min.js', {mode: 'no-cors'}),
-        // new Request('/blog/images/nhnent.png', {mode: 'no-cors'})
+         new Request('/blog/assets/js/scripts.min.js', {mode: 'no-cors'}),
+         new Request('/blog/images/nhnent.png', {mode: 'no-cors'})
       ]);
     }).then(function(){
       console.log('등록완료');
