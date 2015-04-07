@@ -87,9 +87,16 @@ console.log("set");
 self.addEventListener('fetch', function(event) {
   console.log("set");
    event.respondWith(
-    caches.match(event.request).then(function(response) {
-      return response || event.default();
-    })
+    caches.match(event.request)
+      .then(function(response) {
+        // Cache hit - 응답 반환
+        if (response) {
+          return response;
+        }
+
+        return fetch(event.request);
+      }
+    )
   );
 });
 
@@ -98,10 +105,10 @@ self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open('static-v5').then(function(cache) {
       return cache.addAll([
-        '/blog/',
-        '/blog/index.html',
-        new Request('/blog/assets/js/scripts.min.js', {mode: 'no-cors'}),
-        new Request('/blog/images/nhnent.png', {mode: 'no-cors'})
+        '/',
+        '/index.html',
+        new Request('/assets/js/scripts.min.js', {mode: 'no-cors'}),
+        new Request('/images/nhnent.png', {mode: 'no-cors'})
       ]);
     }).then(function(){
       console.log('등록완료');
