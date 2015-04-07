@@ -84,6 +84,11 @@ if (!CacheStorage.prototype.match) {
 
 
 console.log("set");
+self.addEventListener('fetch', function(event) {
+  event.respondWith(
+    new Response('This came from the service worker!')
+  );
+});
 
 self.addEventListener('install', function(event) {
   console.log("install");
@@ -104,37 +109,23 @@ self.addEventListener('install', function(event) {
 });
 
 
-self.addEventListener('fetch', function(event) {
-  console.log("fetch");
-  console.log(event.request);
-  console.log(caches);
+// self.addEventListener('fetch', function(event) {
+//   console.log("fetch");
+//   console.log(event.request);
+//   console.log(caches);
 
-  event.respondWith(
-    caches.match(event.request).then(function(response) {
-      console.log('in');
-      if(response){
-         console.log(response);
-        return response;
-      }
-    }).catch(function() {
-      console.log('exception');
-      return caches.match('/blog/404.html');
-    })
-  );
-});
-self.addEventListener('activate', function(event) {
-console.log("acive");
-  var cacheWhitelist = ['pages-cache-v1', 'blog-posts-cache-v1'];
+//   event.respondWith(
+//     caches.match(event.request).then(function(response) {
+//       console.log('in');
+//       if(response){
+//          console.log(response);
+//         return response;
+//       }
+//     }).catch(function() {
+//       console.log('exception');
+//       return caches.match('/blog/404.html');
+//     })
+//   );
+// });
 
-  event.waitUntil(
-    caches.keys().then(function(cacheNames) {
-      return Promise.all(
-        cacheNames.map(function(cacheName) {
-          if (cacheWhitelist.indexOf(cacheName) === -1) {
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    })
-  );
-});
+
