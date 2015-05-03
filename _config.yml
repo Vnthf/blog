@@ -2,8 +2,8 @@
 
 title:            호우의 블로그
 locale:           en_US
-url:              
-baseurl:          /blog
+url:              /blog
+baseurl:          
 
 # Jekyll configuration
 
