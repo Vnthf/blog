@@ -18,7 +18,6 @@ tags: [git]
 git commit -m "first commit" // 잘못된 커밋이다. 
 git add forgotten_file // 이전 커밋에서 놓친 파일이나 변경내용을 staging상태에 더 해준다.
 git commit --amend // amend 명령어를 입력하면 이전 commit에 관한 창이 뜬다. 거기서 commit msg를 수정해주면 이전 커밋을 변경할 수 있다.
-git rebase -i HEAD~3
 {% endhighlight %} 
 
 만약 remote 브런치에도 이미 푸쉬한 상태라면 어떨까? 소스트리를 쓰는 경우 한번에 푸쉬까지 해버리는 경우가 많아서 자주 일어나는 일이다. amend 후에 리모트 브런치에 푸쉬를 해보면 이전 staging과 달라서 non-fast forward 에러가 난다. 이럴 땐 --force 옵션을 주어서 푸쉬를 하면 수정가능하다.
