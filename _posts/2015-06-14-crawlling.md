@@ -3,13 +3,13 @@ layout: post
 title: "크롤링 해보기"
 modified: 2015-06-07
 comments: true
-excerpt: "python scrapy를 이용한 크롤링 체험기"
+excerpt: "python scrapy를 이용한 크롤링"
 tags: [python, crawlling]
 ---
 
 지금 개인적으로 하려는 프로젝트도 크롤링 관련이기도하고 크롤링이 어떤식으로 동작하는지가 많이 궁금하였다. 
 
-사실 내가 할껀 없다. 그저 라이브러리를 잘 써주기만 하면 된다. 크롤링은 파이썬 라이브러리들이 가장 편하고 범용적이어서 파이썬을 쓰는게 가장 좋다고는 한다. 나는 scrapy라는 라이브러리를 이용해서 github.com 페이지 중 하나를 크롤링하기로 하였다. 
+아주 쉽다. 라이브러리를 잘 써주기만 하면 된다. 크롤링은 파이썬 라이브러리들이 가장 편하고 범용적이어서 파이썬을 쓰는게 가장 좋다고 한다. 나는 scrapy라는 라이브러리를 이용해서 github.com 페이지 중 하나를 간단히 크롤링해보았다.
 
 
 ### Scrapy 설치
@@ -124,14 +124,15 @@ Spider에서 InitSpider를 받는다. 크롤링을 시작하게 되면 initReque
 크롤링하는 방법은 정말 쉽다. 그저 html결과물인 response를 분석하고 해당 tag나 id, class명으로 Dom위치를 찾아다니는 것이다. scrapy에서는 xpath와 css문법을 지원해준다. 
 
 이슈페이지를 살펴보자 
-
+<br/>
 <img src="/blog/images/crawl1.png"/>
-
-먼저 개발자 도구를 키고 이슈번호가 든 체크박스돔을 찾아야 한다. 여기서는 .task-list로 되어있다. 한번에 받으려면 그 아래 돔인 .task-list-item을 찾아야한다. 
+<br/>
+먼저 개발자 도구를 키고 이슈번호가 든 체크박스돔을 찾아야 한다. 여기서는 .task-list로 되어있다. 하위 돔인 .task-list-item을 찾아서 배열로 받으면 좀 더 가공하기 편할 것이다.  
+<br/>
 <img src="/blog/images/crawl2.png"/>
 
 다음 scrapy.selector를 이용해서 scrapy가 지원하는 형식으로 response를 바꿔준다. 그러면 xpath 와 css를 이용해 원하는 정보를 찾을 수 있다. 
-둘 중 뭐를 선택하든 자유다. 나에게는 css문법이 훨씬 편해보였다. 아래는 간단한 예제이다. 이런식으로 정보를 얻어서 원하는 정보를 출력하거나 가공하거나 scrapy item을 이용해서 파싱할 수 도 있다. 
+둘 중 뭐를 선택하든 자유다. 문법에 관한 설명은 홈페이지 예제를 보면 된다. 나에게는 css문법이 훨씬 편해보였다. 아래는 간단한 예제이다. 이런식으로 정보를 얻어서 원하는 정보를 출력하거나 가공하거나 scrapy item을 이용해서 파싱할 수 도 있다. 
 
 {% highlight python %}
 
