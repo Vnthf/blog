@@ -37,12 +37,12 @@ scrapy startproject 프로젝트 명
 
 프로젝트 명으로 폴더가 만들어지고 만든 폴더의 구조를 보면 
 
-scrapy.cfg: 설정파일이 있다. 프로젝트 자체에 관한 설정이다. 예를들어 설정파일은 어디있고 프로젝트 파일명은 어떤것이고..
-프로젝트 명/: 이 폴더에 프로젝트 관련 모듈이 들어간다. 일단 기본적으로 startproject 때 입력한 프로젝트 명으로 중복해서 폴더가 만들어진다. 설정파일에 보면 기본적으로 이 파일명으로 세팅이 되어있다. 
-프로젝트 명/items.py: item 즉 vo라고 생각하면 된다. 
-프로젝트 명/pipelines.py: 파이프라인 관련 파일이다. 파이프라인이란 scrapy의 item을 가지고 디비에 데이터를 집어 넣거나 유효성체크를 하거나 다른아이템들과 가공을 하는데 사용한다. 
-프로젝트 명/settings.py: 설정관련 파일이다. 
-프로젝트 명/spiders/: 크롤링 하고자 하는 코드들이 들어간다. 여기서는 스파이더라 부르는데 일종의 비지니스 로직이라고 생각하면 된다. 
+* scrapy.cfg: 설정파일이 있다. 프로젝트 자체에 관한 설정이다. 예를들어 설정파일은 어디있고 프로젝트 파일명은 어떤것이고..
+* 프로젝트 명/: 이 폴더에 프로젝트 관련 모듈이 들어간다. 일단 기본적으로 startproject 때 입력한 프로젝트 명으로 중복해서 폴더가 만들어진다. 설정파일에 보면 기본적으로 이 파일명으로 세팅이 되어있다. 
+* 프로젝트 명/items.py: item 즉 vo라고 생각하면 된다. 
+* 프로젝트 명/pipelines.py: 파이프라인 관련 파일이다. 파이프라인이란 scrapy의 item을 가지고 디비에 데이터를 집어 넣거나 유효성체크를 하거나 다른아이템들과 가공을 하는데 사용한다. 
+* 프로젝트 명/settings.py: 설정관련 파일이다. 
+* 프로젝트 명/spiders/: 크롤링 하고자 하는 코드들이 들어간다. 여기서는 스파이더라 부르는데 일종의 비지니스 로직이라고 생각하면 된다. 
 
 <br/><br/>
 설치가 끝났으면 이제부터 간단히 깃헙의 이슈페이지를 크롤링해서 메일을 보내보자. 이번 포스팅해서는 간단히 크롤링만할것이기 때문에 아이템이나 파이프라인은 쓰지 않을 것이다. 좀 더 고급진 기능을 원한다면 아래 링크에 있는 scrapy 홈페이지에 자.세.히 나와있다. 
@@ -76,7 +76,6 @@ scrapy crawl name
 
 ### 인증처리하기 
 
-<br/><br/>
 위의 예제는 링크만 치고 누구나 들어갈 수 있는 사이트이다. 그러나 github는 로그인이 필요한 서비스이다. 그래서 인증 절차를 거쳐야한다. 방법은 여러가지가 있다. 로그인하는 폼의 엘리먼트를 찾아서 값을 대입하는 방법, 세션값, 혹은 쿠기값을 변경하는 방법, form request를 보내는 방법등이 있을 것이다. scrapy는 scrapy.http를 이용해 이러한 처리들을 가능하게 해준다. 하지만 parse함수 전에 로그인하는 과정을 어떻게 시켜줘야 할까. 직접 구현할 필요는 없다. scrapy에 내장된 *initspider*라는 걸 상속받으면 parse를 오버라이드해서 parse실행전에 다른 작업들을 할 수 있게 해준다. 아래코드를 보자. 
 
 {% highlight python %}
@@ -124,7 +123,19 @@ Spider에서 InitSpider를 받는다. 크롤링을 시작하게 되면 initReque
 ### 크롤링하기 
 크롤링하는 방법은 정말 쉽다. 그저 html결과물인 response를 분석하고 해당 tag나 id, class명으로 Dom위치를 찾아다니는 것이다. scrapy에서는 xpath와 css문법을 지원해준다. 
 
+이슈페이지를 살펴보자 
+
+<img src="/blog/images/crawl1.png"/>
+
+먼저 개발자 도구를 키고 이슈번호가 든 체크박스돔을 찾아야 한다. 여기서는 .task-list로 되어있다. 한번에 받으려면 그 아래 돔인 .task-list-item을 찾아야한다. 
+<img src="/blog/images/crawl2.png"/>
+
+다음 scrapy.selector를 이용해서 scrapy가 지원하는 형식으로 response를 바꿔준다. 그러면 xpath 와 css를 이용해 원하는 정보를 찾을 수 있다. 
+둘 중 뭐를 선택하든 자유다. 나에게는 css문법이 훨씬 편해보였다. 아래는 간단한 예제이다. 이런식으로 정보를 얻어서 원하는 정보를 출력하거나 가공하거나 scrapy item을 이용해서 파싱할 수 도 있다. 
+
 {% highlight python %}
+
+from scrapy.selector import Selector
 
 hxs = Selector(response)
 		members = hxs.css("li.task-list-item")
@@ -132,22 +143,29 @@ hxs = Selector(response)
 			isWrited = len(member.xpath('input/@checked').extract()) > 0 and True or False
 			text = member.extract()
 			name = re.split('>', text)[2].split('<')[0].strip()
-			self.blogItem.setRookie(name,isWrited)
 			print isWrited, name
-		self.send_mail()
-		print self.blogItem.getMailingList()
 
 {% endhighlight %} 
 
 
-
 ### 메일 보내기 
+메일은 scrapy.mail을 이용하면 쉽게 보내진다. 자세한건 홈페이지를 참조하면 되고 다만 메시지를 쓸 때는 MIME형식에 맞춰 쓸 수 있도록 관련 라이브러리를 
+MIMEMultipart, MIMEText와 같은 import에서 사용하기 바란다. 
+
+{% highlight python %}
+mailServer = smtplib.SMTP('smtp.gmail.com', 587)
+		mailServer.ehlo()
+		mailServer.starttls()
+		mailServer.ehlo()
+		mailServer.login(gmailUser, gmailPassword)
+		mailServer.sendmail(gmailUser, recipients, msg.as_string())
+		mailServer.close()
+{% endhighlight %} 
 
 
 
 
-
-
+* scrapy : [http://doc.scrapy.org/en/latest/](http://doc.scrapy.org/en/latest/)
 
 
 
