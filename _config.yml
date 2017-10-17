@@ -1,6 +1,6 @@
 # Site wide configuration
 
-title:            호우의 블로그 https://vnthf.logdown.com 으로 이전 
+title:            호우의 블로그 http://vnthf.logdown.com 으로 이전 
 locale:           en_US
 url:              /blog
 baseurl:          
